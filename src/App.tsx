@@ -4,19 +4,22 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Link,
 } from 'react-router-dom'
-import { TrackDetail } from './components/TrackDetail';
 import TrackList from './components/TrackList';
+import TrackDetail from './components/TrackDetail';
 
 const App: React.FC = () => {
   return (
     <div>
       <Router>
       <div>
-      <h1> Rock Tracks</h1>           
+      <Link to="/">
+      <h1> Rock Tracks</h1>  
+      </Link>         
         <Switch>
           <Route exact path="/" component={TrackList} />
-          <Route path="/:id" component={TrackDetail} />
+          <Route path="/:index" component={TrackDetail} />
         </Switch>
       </div>
     </Router>

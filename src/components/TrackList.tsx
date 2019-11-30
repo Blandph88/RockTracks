@@ -26,7 +26,7 @@ class TrackList extends React.PureComponent {
       return (
 
         <TrackGrid>
-          {this.state.tracks.map((x: any, i: any) => <TrackItem track={x} key={i}>{x.artistName}</TrackItem>)}
+          {this.state.tracks.map((x: any, i: any) => <TrackItem index={i} track={x} key={i}/>)}
         </TrackGrid>
       );
     }

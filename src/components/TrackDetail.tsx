@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 interface State {
     artworkUrl100: string
@@ -9,9 +9,10 @@ interface State {
     artistName: string
     trackTimeMillis: string
     releaseDate: string
+    trackViewUrl: string
 }
 
-class TrackDetail extends React.PureComponent<
+export class TrackDetail extends React.PureComponent<
     RouteComponentProps<{
         index: string
     }>,
@@ -26,6 +27,7 @@ class TrackDetail extends React.PureComponent<
         artistName: "",
         trackTimeMillis: "",
         releaseDate: "",
+        trackViewUrl: ""
     }
 
     async componentDidMount() {
@@ -41,6 +43,7 @@ class TrackDetail extends React.PureComponent<
             artistName: track.artistName,
             trackTimeMillis: track.trackTimeMillis,
             releaseDate: track.releaseDate,
+            trackViewUrl: track.trackViewUrl
           });
           console.log("track: ", track)
           console.log("tracks.results: ", tracks.results) 
@@ -59,16 +62,16 @@ class TrackDetail extends React.PureComponent<
     if(!this.state) return <p>loading</p>;
     return (
         <div>
-          <p>hi</p>
             <img src={`${this.state.artworkUrl100}`} />
             <p>{this.state.trackName}</p>
             <p>{this.state.artistName}</p>
             <p>{this.state.trackTimeMillis}</p>
             <p>{this.state.releaseDate}</p>
             <p>{`${this.state.currency}${this.state.trackPrice}`}</p>
+            <a href={`${this.state.trackViewUrl}`}>
+            <button>More details</button>
+            </a>
         </div>
     );
   }
 }
-
-export default TrackDetail;

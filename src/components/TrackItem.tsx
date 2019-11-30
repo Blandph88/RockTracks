@@ -8,7 +8,6 @@ interface Props {
 
 export class TrackItem extends React.PureComponent<Props> {
 
-
     render() {
     
         // if(!track.id) return null;

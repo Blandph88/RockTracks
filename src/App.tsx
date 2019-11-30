@@ -1,28 +1,28 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Switch,
   Link,
 } from 'react-router-dom'
-import TrackList from './components/TrackList';
-import TrackDetail from './components/TrackDetail';
+import { TrackList } from './components/TrackList';
+import { TrackDetail } from './components/TrackDetail';
 
 const App: React.FC = () => {
   return (
     <div>
-      <Router>
+      <BrowserRouter>
+      <Switch>
       <div>
       <Link to="/">
       <h1> Rock Tracks</h1>  
       </Link>         
-        <Switch>
           <Route exact path="/" component={TrackList} />
           <Route path="/:index" component={TrackDetail} />
-        </Switch>
       </div>
-    </Router>
+      </Switch>
+    </BrowserRouter>
     </div>
   );
 }

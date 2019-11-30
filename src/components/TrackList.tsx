@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components';
 import { TrackItem } from './TrackItem';
 
-class TrackList extends React.PureComponent {
+export class TrackList extends React.PureComponent {
     state = {
       tracks: [],
     }
@@ -31,8 +31,6 @@ class TrackList extends React.PureComponent {
       );
     }
   }
-  
-  export default TrackList;
   
   const TrackGrid = styled.div`
   display: grid;

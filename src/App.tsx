@@ -5,8 +5,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
-import { TrackList } from './routes/TrackList';
-import { TrackDetail } from './routes/TrackDetail';
+import { TrackDetail } from './components/TrackDetail';
+import TrackList from './components/TrackList';
 
 const App: React.FC = () => {
   return (

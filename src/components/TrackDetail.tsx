@@ -45,8 +45,8 @@ class TrackDetail extends React.PureComponent<RCProps> {
       <p>{millisToMinutesAndSeconds(this.props.trackDetail.trackTimeMillis)}</p>
       <p>{date.toLocaleDateString()}</p>
       <p>{`${this.props.trackDetail.currency}${this.props.trackDetail.trackPrice}`}</p>
-      <a href={`${this.props.trackDetail.trackViewUrl}`}>
-      <button>More details</button>
+      <a target="_blank" href={`${this.props.trackDetail.trackViewUrl}`}>
+      <button style={{ height: "50px", width: "200px", fontWeight: "bold", fontSize: "20px" }}>More details</button>
       </a>
     </div>
     );

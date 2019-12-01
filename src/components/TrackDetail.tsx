@@ -34,6 +34,8 @@ class TrackDetail extends React.PureComponent<RCProps> {
       return minutes + ":" + (parseFloat(seconds) < 10 ? '0' : '') + seconds;
     }
 
+    const date = new Date(this.props.trackDetail.releaseDate)
+
     if(!this.props.trackDetailLoaded) return <p>loading</p>;
     return (
       <div>
@@ -41,7 +43,7 @@ class TrackDetail extends React.PureComponent<RCProps> {
       <p>{this.props.trackDetail.trackName}</p>
       <p>{this.props.trackDetail.artistName}</p>
       <p>{millisToMinutesAndSeconds(this.props.trackDetail.trackTimeMillis)}</p>
-      <p>{this.props.trackDetail.releaseDate}</p>
+      <p>{date.toLocaleDateString()}</p>
       <p>{`${this.props.trackDetail.currency}${this.props.trackDetail.trackPrice}`}</p>
       <a href={`${this.props.trackDetail.trackViewUrl}`}>
       <button>More details</button>

@@ -14,7 +14,7 @@ export class TrackItem extends React.PureComponent<Props> {
         return (
             <div>
                 <Link to={`/${this.props.index}`}>
-                    <img src={`${this.props.track.artworkUrl100}`} />
+                    <img alt={this.props.track.trackName} src={`${this.props.track.artworkUrl100}`} />
                     <p>{this.props.track.trackName}</p>
                     <p>{this.props.track.artistName}</p>
                     <p>{`${this.props.track.currency}${this.props.track.trackPrice}`}</p>

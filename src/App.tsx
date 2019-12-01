@@ -7,12 +7,21 @@ import {
   Link,
 } from 'react-router-dom'
 import { Provider } from 'react-redux';
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
-import { TrackList } from './components/TrackList';
-import { TrackDetail } from './components/TrackDetail';
-import { createStore } from 'redux';
+import TrackList from './components/TrackList';
+import TrackDetail from './components/TrackDetail';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(rootReducer)
+const middleware = [ logger, thunk ]
+
+const store = createStore(
+  rootReducer,
+  {},
+  composeWithDevTools(applyMiddleware(...middleware))
+)
 
 const App: React.FC = () => {
   return (

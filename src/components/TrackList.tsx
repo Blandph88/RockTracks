@@ -1,36 +1,48 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components';
 import { TrackItem } from './TrackItem';
+import { getTrackList } from '../actions'
 
-export class TrackList extends React.PureComponent {
-    state = {
-      tracks: [],
-    }
-  
-    async componentDidMount() {
-      try {
-        const res = await fetch('https://itunes.apple.com/search?term=rock&media=music');
-        const tracks = await res.json();
-        this.setState({
-          tracks: tracks.results,
-        });
-        console.log('Object=',this.state.tracks)
-        console.log(this.state.tracks.map((x: any) => (x)))
-      } catch (e) {
-        console.log(e);
+interface Props {
+  getTrackList: any
+  trackList: any
+  trackListLoaded: any
+}
+
+class TrackList extends React.PureComponent<Props> {
+    
+    componentDidMount() {
+      if(this.props.trackListLoaded === false) {
+        this.props.getTrackList();
       }
     }
  
     render() {
-        
-      return (
 
+      if(!this.props.trackListLoaded) return <h1>...Loading</h1>
+      return (
+        
         <TrackGrid>
-          {this.state.tracks.map((x: any, i: any) => <TrackItem index={i} track={x} key={i}/>)}
+          {this.props.trackList.map((x: any, i: any) => <TrackItem index={i} track={x} key={i}/>)}
         </TrackGrid>
       );
     }
   }
+ 
+  const mapStateToProps = (state: any) => (
+    {
+    
+      trackList: state.item.trackList,
+      trackListLoaded: state.item.trackListLoaded
+  })
+
+  const mapDispatchToProps = (dispatch: any) => bindActionCreators({
+    getTrackList
+  }, dispatch)
+
+  export default connect(mapStateToProps, mapDispatchToProps)(TrackList)
   
   const TrackGrid = styled.div`
   display: grid;

@@ -26,8 +26,13 @@ class TrackDetail extends React.PureComponent<RCProps> {
     this.props.resetTrackDetail()
   }
 
-
   render() {
+
+    const millisToMinutesAndSeconds = (millis: any) => {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (parseFloat(seconds) < 10 ? '0' : '') + seconds;
+    }
 
     if(!this.props.trackDetailLoaded) return <p>loading</p>;
     return (
@@ -35,7 +40,7 @@ class TrackDetail extends React.PureComponent<RCProps> {
       <img alt={this.props.trackDetail.trackName} src={`${this.props.trackDetail.artworkUrl100}`} />
       <p>{this.props.trackDetail.trackName}</p>
       <p>{this.props.trackDetail.artistName}</p>
-      <p>{this.props.trackDetail.trackTimeMillis}</p>
+      <p>{millisToMinutesAndSeconds(this.props.trackDetail.trackTimeMillis)}</p>
       <p>{this.props.trackDetail.releaseDate}</p>
       <p>{`${this.props.trackDetail.currency}${this.props.trackDetail.trackPrice}`}</p>
       <a href={`${this.props.trackDetail.trackViewUrl}`}>

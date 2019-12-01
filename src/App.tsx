@@ -9,6 +9,7 @@ import {
 import { Provider } from 'react-redux';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+// import { save, load } from 'redux-localstorage-simple'
 import rootReducer from './rootReducer'
 import TrackList from './components/TrackList';
 import TrackDetail from './components/TrackDetail';
@@ -19,8 +20,13 @@ const middleware = [ logger, thunk ]
 
 const store = createStore(
   rootReducer,
-  {},
-  composeWithDevTools(applyMiddleware(...middleware))
+  // load(),
+  composeWithDevTools(
+    applyMiddleware(
+      ...middleware,
+      // save()
+    )
+  )
 )
 
 const App: React.FC = () => {

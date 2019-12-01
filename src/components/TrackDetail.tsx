@@ -2,24 +2,30 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getTrackDetail } from '../actions'
+import { getTrackDetail, resetTrackDetail } from '../actions'
 
 
 interface RCProps extends RouteComponentProps {
   trackDetail: any
   trackDetailLoaded: any,
   getTrackDetail: any,
+  resetTrackDetail: any,
 }
 
 class TrackDetail extends React.PureComponent<RCProps> {
 
-  async componentDidMount() {
+  componentDidMount() {
       let mystring = this.props.match.url;
       mystring = mystring.replace('/','');
       if(this.props.trackDetailLoaded === false) {
         this.props.getTrackDetail(mystring)
       }
   }
+
+  componentWillUnmount() {
+    this.props.resetTrackDetail()
+  }
+
 
   render() {
 
@@ -46,7 +52,8 @@ const mapStateToProps = (state: any) => (
   })
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-  getTrackDetail
+  getTrackDetail,
+  resetTrackDetail
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackDetail)

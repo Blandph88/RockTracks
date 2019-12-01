@@ -18,7 +18,7 @@ class TrackList extends React.PureComponent<Props> {
         this.props.getTrackList();
       }
     }
- 
+
     render() {
 
       if(!this.props.trackListLoaded) return <h1>...Loading</h1>
@@ -39,7 +39,7 @@ class TrackList extends React.PureComponent<Props> {
   })
 
   const mapDispatchToProps = (dispatch: any) => bindActionCreators({
-    getTrackList
+    getTrackList,
   }, dispatch)
 
   export default connect(mapStateToProps, mapDispatchToProps)(TrackList)

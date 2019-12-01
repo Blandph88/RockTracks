@@ -1,5 +1,6 @@
 export const GET_TRACK_LIST = 'GET_TRACK_LIST'
 export const GET_TRACK_DETAIL = 'GET_TRACK_DETAIL'
+export const RESET_TRACK_DETAIL = 'RESET_TRACK_DETAIL'
 
 export function getTrackList() {
     return async function(dispatch: any) {
@@ -22,5 +23,11 @@ export function getTrackDetail(index: any) {
             type: GET_TRACK_DETAIL,
             data: trackDetail
         })
+    }
+}
+
+export function resetTrackDetail() {
+    return {
+        type: 'RESET_TRACK_DETAIL'
     }
 }

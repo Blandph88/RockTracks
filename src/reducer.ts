@@ -1,5 +1,4 @@
-import { GET_TRACK_LIST } from './actions'
-import { GET_TRACK_DETAIL } from './actions'
+import { GET_TRACK_LIST, GET_TRACK_DETAIL, RESET_TRACK_DETAIL } from './actions'
 
 const initialState = {
     trackList: [],
@@ -16,13 +15,19 @@ export default function(state = initialState, action: any) {
                 ...state,
                 trackList: data,
                 trackListLoaded: true
-           };
+        };
         case GET_TRACK_DETAIL:
             return {
                 ...state,
                 trackDetail: data,
                 trackDetailLoaded: true
-            };
+        };
+        case RESET_TRACK_DETAIL:
+            return {
+                ...state,
+                trackDetail: {},
+                trackDetailLoaded: false
+        };
         default:
             return state
     }
